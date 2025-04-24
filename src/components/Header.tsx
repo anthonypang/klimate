@@ -4,6 +4,7 @@ import logo from "../../public/logo.png";
 import logo2 from "../../public/logo2.png";
 import { useTheme } from "@/context/theme-provider";
 import { Moon, Sun } from "lucide-react";
+import CitySearch from "./CitySearch";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -15,8 +16,9 @@ const Header = () => {
         <Link to="/">
           <img src={isDarkMode ? logo : logo2} alt="logo" className="h-14" />
         </Link>
-        <div>
+        <div className="flex gap-4">
           {/* Search */}
+          <CitySearch />
           {/* Theme Toggle */}
           <div
             onClick={() => setTheme(isDarkMode ? "light" : "dark")}
