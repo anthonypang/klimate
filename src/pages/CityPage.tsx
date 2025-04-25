@@ -1,4 +1,5 @@
 import CurrentWeather from "@/components/CurrentWeather";
+import FavoriteButton from "@/components/FavoriteButton";
 import HourlyTemperature from "@/components/HourlyTemperature";
 import LoadingSkeleton from "@/components/LoadingSkeleton";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
@@ -31,7 +32,7 @@ const CityPage = () => {
     );
   }
 
-  if (!weatherQuery.data || !forecastQuery.data) {
+  if (!weatherQuery.data || !forecastQuery.data || !params.cityName) {
     return <LoadingSkeleton />;
   }
 
@@ -42,7 +43,11 @@ const CityPage = () => {
         <h1 className="text-xl font-bold tracking-tight">
           {params.cityName}, {weatherQuery.data.sys.country}
         </h1>
-        {/* <div>favorite button</div> */}
+        <div>
+          <FavoriteButton
+            data={{ ...weatherQuery.data, name: params.cityName }}
+          />
+        </div>
       </div>
 
       {/* Current and Hourly Weather */}
