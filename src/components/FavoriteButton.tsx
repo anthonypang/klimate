@@ -31,7 +31,9 @@ const FavoriteButton = ({ data }: FavoriteButtonProps) => {
     <Button
       variant={isCurrentlyFavorite ? "default" : "outline"}
       size={"icon"}
-      className={isCurrentlyFavorite ? "bg-yellow-500 hover:bg-yellow-600" : ""}
+      className={`${
+        isCurrentlyFavorite ? "bg-yellow-500 hover:bg-yellow-600" : ""
+      } cursor-pointer`}
       onClick={handleToggleFavorite}
     >
       <StarIcon
