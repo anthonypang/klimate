@@ -89,7 +89,7 @@ const CitySearch = () => {
           {history.length > 0 && (
             <>
               <CommandSeparator />
-              <CommandGroup heading="Recent Searches">
+              <CommandGroup>
                 <div className="flex items-center justify-between px-2 my-2">
                   <p className="text-xs text-muted-foreground">
                     Recent Searches
