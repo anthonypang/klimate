@@ -41,6 +41,7 @@ export interface ForecastData {
     wind: WeatherData["wind"];
     weather: WeatherData["weather"];
     dt_txt: string;
+    pop: number;
   }>;
   city: {
     name: string;

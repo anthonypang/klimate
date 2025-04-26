@@ -1,7 +1,7 @@
 import { ForecastData } from "@/api/types";
 import { format } from "date-fns";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
-import { ArrowDown, ArrowUp, Droplets, Wind } from "lucide-react";
+import { ArrowDown, ArrowUp, Umbrella, Wind } from "lucide-react";
 
 type WeatherForecastProps = {
   data: ForecastData;
@@ -19,6 +19,7 @@ type DailyForecast = {
     description: string;
     icon: string;
   };
+  pop: number;
 };
 
 const WeatherForecast = ({ data }: WeatherForecastProps) => {
@@ -33,6 +34,7 @@ const WeatherForecast = ({ data }: WeatherForecastProps) => {
         wind: forecast.wind.speed,
         weather: forecast.weather[0],
         date: forecast.dt,
+        pop: forecast.pop,
       };
     } else {
       acc[date].temp_min = Math.min(acc[date].temp_min, forecast.main.temp_min);
@@ -41,11 +43,10 @@ const WeatherForecast = ({ data }: WeatherForecastProps) => {
 
     return acc;
   }, {} as Record<string, DailyForecast>);
-
   const nextDays = Object.values(dailyForecasts).slice(0, 6);
 
   const formatTemp = (temp: number) => `${Math.round(temp)}°`;
-
+  console.log(dailyForecasts);
   return (
     <Card>
       <CardHeader>
@@ -81,8 +82,8 @@ const WeatherForecast = ({ data }: WeatherForecastProps) => {
 
                 <div className="flex justify-end gap-4">
                   <span className="flex items-center gap-1">
-                    <Droplets className="h-4 w-4 text-blue-500" />
-                    <span className="text-sm">{day.humidity}%</span>
+                    <Umbrella className="h-4 w-4 text-blue-500" />
+                    <span className="text-sm">{day.pop * 100}%</span>
                   </span>
                   <span className="flex items-center gap-1">
                     <Wind className="h-4 w-4 text-blue-500" />
